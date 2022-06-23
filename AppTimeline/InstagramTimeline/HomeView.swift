@@ -11,7 +11,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List {
+                ScrollView(showsIndicators: false) {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             AddStroys()
@@ -27,24 +27,30 @@ struct HomeView: View {
                         }
                     }
                     
-                    Posts(avatarImage: "avatar_3", avatarName: "Samanta Rose", postImages_1: "image_1", postImages_2: "image_2")
-                    Posts(avatarImage: "avatar_1", avatarName: "Helena Ruby", postImages_1: "image_1", postImages_2: "image_3")
-                    Posts(avatarImage: "avatar_2", avatarName: "Richard Gage", postImages_1: "image_1", postImages_2: "image_2")
-                    Posts(avatarImage: "avatar_2", avatarName: "Richard Gage", postImages_1: "image_2", postImages_2: "image_3")
-                    Posts(avatarImage: "avatar_2", avatarName: "Richard Gage", postImages_1: "image_2", postImages_2: "image_1")
+                    VStack {
+                        Posts(avatarImage: "avatar_3", avatarName: "Samanta Rose", postImages_1: "image_1", postImages_2: "image_2")
+                        Posts(avatarImage: "avatar_1", avatarName: "Helena Ruby", postImages_1: "image_3", postImages_2: "image_1")
+                        Posts(avatarImage: "avatar_2", avatarName: "Richard Gage", postImages_1: "image_2", postImages_2: "image_3")
+                        Posts(avatarImage: "avatar_3", avatarName: "Anna Carlson", postImages_1: "image_1", postImages_2: "image_2")
+                        Posts(avatarImage: "avatar_2", avatarName: "Boby Rush", postImages_1: "image_3", postImages_2: "image_1")
+                    }
                 }
                 .listStyle(PlainListStyle())
             }
             .navigationBarTitle("Home Page", displayMode: .inline)
+            
             .navigationBarItems(
                 leading: Button(action: { }, label: { Image(systemName: "camera") .foregroundColor(.red)}),
-                trailing: Button(action: {
-                    UserDefaults.standard.set(false, forKey: "Status")
-                    NotificationCenter.default.post(name: NSNotification.Name("Status"), object: nil)
-                }, label: {
-                    Image(systemName: "person")
-                        .foregroundColor(.red)
-                }))
+                trailing: Button(
+                    action: {
+                        UserDefaults.standard.set(false, forKey: "Status")
+                        NotificationCenter.default.post(name: NSNotification.Name("Status"), object: nil)
+                    }, label: {
+                        Image(systemName: "person")
+                            .foregroundColor(.red)
+                    }
+                )
+            )
         }
     }
 }

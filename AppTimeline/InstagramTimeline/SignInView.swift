@@ -27,14 +27,14 @@ struct SignInView: View {
                     TextField("Enter email", text: $email)
                         .frame(height: 45)
                         .padding(.leading, 10)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .background(Color.gray .opacity(0.2))
                         .cornerRadius(25)
                     
                     SecureField("Enter password", text: $password)
                         .frame(height: 45)
                         .padding(.leading, 10)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .background(Color.gray .opacity(0.2))
                         .cornerRadius(25)
                 }
